@@ -8893,178 +8893,285 @@ var _user$project$View$renderProblem = F2(
 			});
 	});
 
-var _user$project$Main$intermediatePositions = F2(
-	function (_p1, _p0) {
-		var _p2 = _p1;
-		var _p7 = _p2._1;
-		var _p6 = _p2._0;
-		var _p3 = _p0;
-		var _p5 = _p3._1;
-		var _p4 = _p3._0;
-		return _elm_lang$core$Native_Utils.eq(_p6, _p4) ? ((_elm_lang$core$Native_Utils.cmp(_p7, _p5) < 1) ? A2(
-			_elm_lang$core$List$map,
-			F2(
-				function (x, y) {
-					return {ctor: '_Tuple2', _0: x, _1: y};
-				})(_p6),
-			A2(_elm_lang$core$List$range, _p7, _p5)) : _elm_lang$core$List$reverse(
-			A2(
-				_elm_lang$core$List$map,
-				F2(
-					function (x, y) {
-						return {ctor: '_Tuple2', _0: x, _1: y};
-					})(_p6),
-				A2(_elm_lang$core$List$range, _p5, _p7)))) : ((_elm_lang$core$Native_Utils.cmp(_p6, _p4) < 1) ? A2(
-			_elm_lang$core$List$map,
-			F2(
-				function (y, x) {
-					return {ctor: '_Tuple2', _0: x, _1: y};
-				})(_p7),
-			A2(_elm_lang$core$List$range, _p6, _p4)) : _elm_lang$core$List$reverse(
-			A2(
-				_elm_lang$core$List$map,
-				F2(
-					function (y, x) {
-						return {ctor: '_Tuple2', _0: x, _1: y};
-					})(_p7),
-				A2(_elm_lang$core$List$range, _p4, _p6))));
+var _user$project$Main$findABAs_ = F2(
+	function (abas, string) {
+		findABAs_:
+		while (true) {
+			var tail = A2(_elm_lang$core$String$dropLeft, 1, string);
+			var _p0 = string;
+			var _p1 = A2(_elm_lang$core$String$split, '', string);
+			if (((_p1.ctor === '::') && (_p1._1.ctor === '::')) && (_p1._1._1.ctor === '::')) {
+				var _p4 = _p1._1._0;
+				var _p3 = _p1._1._1._0;
+				var _p2 = _p1._0;
+				if (_elm_lang$core$Native_Utils.eq(_p2, _p3) && (!_elm_lang$core$Native_Utils.eq(_p4, _p2))) {
+					var _v1 = {
+						ctor: '::',
+						_0: _elm_lang$core$String$concat(
+							{
+								ctor: '::',
+								_0: _p2,
+								_1: {
+									ctor: '::',
+									_0: _p4,
+									_1: {
+										ctor: '::',
+										_0: _p3,
+										_1: {ctor: '[]'}
+									}
+								}
+							}),
+						_1: abas
+					},
+						_v2 = tail;
+					abas = _v1;
+					string = _v2;
+					continue findABAs_;
+				} else {
+					var _v3 = abas,
+						_v4 = tail;
+					abas = _v3;
+					string = _v4;
+					continue findABAs_;
+				}
+			} else {
+				return abas;
+			}
+		}
 	});
-var _user$project$Main$getMovements = function (model) {
+var _user$project$Main$findABAs = function (string) {
+	return A2(
+		_user$project$Main$findABAs_,
+		{ctor: '[]'},
+		string);
+};
+var _user$project$Main$reverseABA = function (string) {
+	var _p5 = A2(_elm_lang$core$String$split, '', string);
+	if ((((_p5.ctor === '::') && (_p5._1.ctor === '::')) && (_p5._1._1.ctor === '::')) && (_p5._1._1._1.ctor === '[]')) {
+		var _p6 = _p5._1._0;
+		return _elm_lang$core$String$concat(
+			{
+				ctor: '::',
+				_0: _p6,
+				_1: {
+					ctor: '::',
+					_0: _p5._0,
+					_1: {
+						ctor: '::',
+						_0: _p6,
+						_1: {ctor: '[]'}
+					}
+				}
+			});
+	} else {
+		return _elm_lang$core$Native_Utils.crashCase(
+			'Main',
+			{
+				start: {line: 84, column: 5},
+				end: {line: 89, column: 39}
+			},
+			_p5)('Invalid ABA!');
+	}
+};
+var _user$project$Main$supportsSSL = function (string) {
+	var insideABAS = A3(
+		_elm_lang$core$List$foldr,
+		_elm_lang$core$Set$insert,
+		_elm_lang$core$Set$empty,
+		_elm_lang$core$List$concat(
+			A2(
+				_elm_lang$core$List$map,
+				_user$project$Main$findABAs,
+				A2(
+					_elm_lang$core$List$map,
+					_elm_lang$core$String$join(''),
+					A2(
+						_elm_lang$core$List$map,
+						_elm_lang$core$List$map(
+							_elm_lang$core$Maybe$withDefault('')),
+						A2(
+							_elm_lang$core$List$map,
+							function (_) {
+								return _.submatches;
+							},
+							A3(
+								_elm_lang$core$Regex$find,
+								_elm_lang$core$Regex$All,
+								_elm_lang$core$Regex$regex('\\[(\\w*?)\\]'),
+								string)))))));
+	var outSideABAS = A3(
+		_elm_lang$core$List$foldr,
+		_elm_lang$core$Set$insert,
+		_elm_lang$core$Set$empty,
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$Main$reverseABA,
+			_elm_lang$core$List$concat(
+				A2(
+					_elm_lang$core$List$map,
+					_user$project$Main$findABAs,
+					A2(
+						_elm_lang$core$List$map,
+						_elm_lang$core$Maybe$withDefault(''),
+						A2(
+							_elm_lang$core$List$map,
+							_elm_lang$core$List$head,
+							A2(
+								_elm_lang$core$List$map,
+								_elm_lang$core$List$reverse,
+								A2(
+									_elm_lang$core$List$map,
+									_elm_lang$core$String$split(']'),
+									A2(_elm_lang$core$String$split, '[', string)))))))));
+	return A2(
+		F2(
+			function (x, y) {
+				return _elm_lang$core$Native_Utils.cmp(x, y) < 0;
+			}),
+		0,
+		_elm_lang$core$Set$size(
+			A2(_elm_lang$core$Set$intersect, outSideABAS, insideABAS)));
+};
+var _user$project$Main$solverPart2 = function (model) {
+	return _elm_lang$core$Basics$toString(
+		_elm_lang$core$List$length(
+			A2(
+				_elm_lang$core$List$filter,
+				_user$project$Main$supportsSSL,
+				A2(
+					_elm_lang$core$List$map,
+					_elm_lang$core$String$trim,
+					A2(_elm_lang$core$String$split, '\n', model.input)))));
+};
+var _user$project$Main$findAbbas = function (string) {
+	var abbas = A3(
+		_elm_lang$core$Regex$find,
+		_elm_lang$core$Regex$All,
+		_elm_lang$core$Regex$regex('\\w*(\\w)(\\w)\\2\\1\\w*'),
+		string);
 	return A2(
 		_elm_lang$core$List$map,
 		function (x) {
-			var _p8 = _elm_lang$core$List$head(x);
-			if (_p8.ctor === 'Just') {
-				var _p9 = _p8._0.submatches;
-				if (((_p9.ctor === '::') && (_p9._1.ctor === '::')) && (_p9._1._1.ctor === '[]')) {
-					return {
-						ctor: '_Tuple2',
-						_0: A2(_elm_lang$core$Maybe$withDefault, 'R', _p9._0),
-						_1: A2(
-							_elm_lang$core$Result$withDefault,
-							0,
-							_elm_lang$core$String$toInt(
-								A2(_elm_lang$core$Maybe$withDefault, '0', _p9._1._0)))
-					};
-				} else {
-					return _elm_lang$core$Native_Utils.crashCase(
-						'Main',
-						{
-							start: {line: 119, column: 25},
-							end: {line: 129, column: 67}
-						},
-						_p9)('Input is not correct');
-				}
-			} else {
-				return _elm_lang$core$Native_Utils.crashCase(
-					'Main',
-					{
-						start: {line: 117, column: 17},
-						end: {line: 132, column: 59}
-					},
-					_p8)('Input is not correct');
-			}
+			return A2(
+				_elm_lang$core$Basics_ops['++'],
+				x,
+				_elm_lang$core$String$reverse(x));
 		},
 		A2(
-			_elm_lang$core$List$map,
+			_elm_lang$core$List$filter,
 			function (x) {
-				return A3(
-					_elm_lang$core$Regex$find,
-					_elm_lang$core$Regex$AtMost(2),
-					_elm_lang$core$Regex$regex('([RL])(\\d+)'),
-					x);
+				return !_elm_lang$core$Native_Utils.eq(
+					x,
+					_elm_lang$core$String$reverse(x));
 			},
 			A2(
 				_elm_lang$core$List$map,
-				_elm_lang$core$String$trim,
-				A2(_elm_lang$core$String$split, ',', model.input))));
+				_elm_lang$core$String$join(''),
+				A2(
+					_elm_lang$core$List$map,
+					_elm_lang$core$List$map(
+						_elm_lang$core$Maybe$withDefault('')),
+					A2(
+						_elm_lang$core$List$map,
+						function (_) {
+							return _.submatches;
+						},
+						abbas)))));
 };
-var _user$project$Main$blockDistance = function (_p12) {
-	var _p13 = _p12;
-	return _p13._0 + _p13._1;
+var _user$project$Main$hasBracketedAbbas = F2(
+	function (abbas, string) {
+		var bracketedAbbas = A2(
+			_elm_lang$core$List$filter,
+			function (x) {
+				return _elm_lang$core$Native_Utils.cmp(
+					_elm_lang$core$List$length(
+						_user$project$Main$findAbbas(x)),
+					0) > 0;
+			},
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$String$join(''),
+				A2(
+					_elm_lang$core$List$map,
+					_elm_lang$core$List$map(
+						_elm_lang$core$Maybe$withDefault('')),
+					A2(
+						_elm_lang$core$List$map,
+						function (_) {
+							return _.submatches;
+						},
+						A3(
+							_elm_lang$core$Regex$find,
+							_elm_lang$core$Regex$All,
+							_elm_lang$core$Regex$regex('\\[(\\w*?)\\]'),
+							string)))));
+		return _elm_lang$core$Native_Utils.cmp(
+			_elm_lang$core$List$length(bracketedAbbas),
+			0) > 0;
+	});
+var _user$project$Main$supportsTLS = function (string) {
+	var abbas = _user$project$Main$findAbbas(string);
+	var _p8 = _elm_lang$core$List$length(abbas);
+	if (_p8 === 0) {
+		return false;
+	} else {
+		return A2(_user$project$Main$hasBracketedAbbas, abbas, string) ? false : true;
+	}
 };
-var _user$project$Main$advance = F2(
-	function (distance, model) {
-		var _p14 = model.position;
-		var posX = _p14._0;
-		var posY = _p14._1;
-		var _p15 = model.direction;
-		var dirX = _p15._0;
-		var dirY = _p15._1;
-		return _elm_lang$core$Native_Utils.update(
-			model,
-			{
-				position: {ctor: '_Tuple2', _0: (distance * dirX) + posX, _1: (distance * dirY) + posY}
-			});
-	});
-var _user$project$Main$turn = F2(
-	function (direction, model) {
-		var _p16 = model.direction;
-		var dirX = _p16._0;
-		var dirY = _p16._1;
-		var _p17 = direction;
-		switch (_p17) {
-			case 'R':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						direction: {ctor: '_Tuple2', _0: dirY, _1: 0 - dirX}
-					});
-			case 'L':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						direction: {ctor: '_Tuple2', _0: 0 - dirY, _1: dirX}
-					});
-			default:
-				return _elm_lang$core$Native_Utils.crashCase(
-					'Main',
-					{
-						start: {line: 76, column: 9},
-						end: {line: 84, column: 48}
-					},
-					_p17)('Unknown direction');
-		}
-	});
 var _user$project$Main$solverPart1 = function (model) {
-	return _user$project$Main$blockDistance(
-		function (_) {
-			return _.position;
-		}(
-			A3(
-				_elm_lang$core$List$foldl,
-				F2(
-					function (_p19, m) {
-						var _p20 = _p19;
-						return A2(
-							_user$project$Main$advance,
-							_p20._1,
-							A2(_user$project$Main$turn, _p20._0, m));
-					}),
-				model,
-				_user$project$Main$getMovements(model))));
+	return _elm_lang$core$Basics$toString(
+		_elm_lang$core$List$length(
+			A2(
+				_elm_lang$core$List$filter,
+				_user$project$Main$supportsTLS,
+				A2(
+					_elm_lang$core$List$map,
+					_elm_lang$core$String$trim,
+					A2(_elm_lang$core$String$split, '\n', model.input)))));
 };
+var _user$project$Main$problemDay = 7;
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
 	_0: {
-		problemDay: 1,
+		problemDay: _user$project$Main$problemDay,
 		input: A2(
 			_elm_lang$core$Maybe$withDefault,
 			'',
-			A2(_elm_lang$core$Array$get, 0, _user$project$Inputs$problemInputs)),
+			A2(_elm_lang$core$Array$get, _user$project$Main$problemDay - 1, _user$project$Inputs$problemInputs)),
 		solutionPart1: '',
-		solutionPart2: '',
-		direction: {ctor: '_Tuple2', _0: 0, _1: 1},
-		position: {ctor: '_Tuple2', _0: 0, _1: 0}
+		solutionPart2: ''
 	},
 	_1: _elm_lang$core$Platform_Cmd$none
 };
+var _user$project$Main$update = F2(
+	function (msg, model) {
+		var _p9 = msg;
+		if (_p9.ctor === 'Solve') {
+			var solution = _user$project$Main$solverPart1(model);
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{solutionPart1: solution}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		} else {
+			var solution = _user$project$Main$solverPart2(model);
+			return {
+				ctor: '_Tuple2',
+				_0: _elm_lang$core$Native_Utils.update(
+					model,
+					{solutionPart2: solution}),
+				_1: _elm_lang$core$Platform_Cmd$none
+			};
+		}
+	});
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {problemDay: a, input: b, solutionPart1: c, solutionPart2: d, direction: e, position: f};
+var _user$project$Main$Model = F4(
+	function (a, b, c, d) {
+		return {problemDay: a, input: b, solutionPart1: c, solutionPart2: d};
 	});
 var _user$project$Main$Solve2 = {ctor: 'Solve2'};
 var _user$project$Main$Solve = {ctor: 'Solve'};
@@ -9081,122 +9188,6 @@ var _user$project$Main$view = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$Visited = function (a) {
-	return {ctor: 'Visited', _0: a};
-};
-var _user$project$Main$NotVisited = function (a) {
-	return {ctor: 'NotVisited', _0: a};
-};
-var _user$project$Main$checkVisited = F2(
-	function (newPositions, positions) {
-		checkVisited:
-		while (true) {
-			var _p21 = newPositions;
-			if (_p21.ctor === '[]') {
-				return _user$project$Main$NotVisited(positions);
-			} else {
-				var _p23 = _p21._0;
-				var _p22 = A2(_elm_lang$core$Set$member, _p23, positions);
-				if (_p22 === true) {
-					return _user$project$Main$Visited(_p23);
-				} else {
-					var _v9 = _p21._1,
-						_v10 = A2(_elm_lang$core$Set$insert, _p23, positions);
-					newPositions = _v9;
-					positions = _v10;
-					continue checkVisited;
-				}
-			}
-		}
-	});
-var _user$project$Main$findDuplicatePosition_ = F3(
-	function (model, movements, positions) {
-		findDuplicatePosition_:
-		while (true) {
-			var _p24 = movements;
-			if (_p24.ctor === '[]') {
-				return _elm_lang$core$Native_Utils.crashCase(
-					'Main',
-					{
-						start: {line: 196, column: 5},
-						end: {line: 221, column: 72}
-					},
-					_p24)('No solution, no duplicate movements');
-			} else {
-				var _p26 = _p24._0;
-				var direction = _p26._0;
-				var distance = _p26._1;
-				var updatedModel = A2(
-					_user$project$Main$advance,
-					distance,
-					A2(_user$project$Main$turn, direction, model));
-				var intermediates = _elm_lang$core$List$tail(
-					_elm_lang$core$List$reverse(
-						A2(_user$project$Main$intermediatePositions, model.position, updatedModel.position)));
-				var _p27 = intermediates;
-				if (_p27.ctor === 'Nothing') {
-					return _elm_lang$core$Native_Utils.crashCase(
-						'Main',
-						{
-							start: {line: 211, column: 17},
-							end: {line: 221, column: 72}
-						},
-						_p27)('No intermediate positions!!!');
-				} else {
-					var _p29 = A2(
-						_user$project$Main$checkVisited,
-						_elm_lang$core$List$reverse(_p27._0),
-						positions);
-					if (_p29.ctor === 'Visited') {
-						return _p29._0;
-					} else {
-						var _v14 = updatedModel,
-							_v15 = _p24._1,
-							_v16 = _p29._0;
-						model = _v14;
-						movements = _v15;
-						positions = _v16;
-						continue findDuplicatePosition_;
-					}
-				}
-			}
-		}
-	});
-var _user$project$Main$solverPart2 = function (model) {
-	var moves = _user$project$Main$getMovements(model);
-	return _user$project$Main$blockDistance(
-		A3(
-			_user$project$Main$findDuplicatePosition_,
-			model,
-			moves,
-			_elm_lang$core$Set$fromList(
-				{ctor: '[]'})));
-};
-var _user$project$Main$update = F2(
-	function (msg, model) {
-		var _p30 = msg;
-		if (_p30.ctor === 'Solve') {
-			var solution = _elm_lang$core$Basics$toString(
-				_user$project$Main$solverPart1(model));
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{solutionPart1: solution}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		} else {
-			var solution = _elm_lang$core$Basics$toString(
-				_user$project$Main$solverPart2(model));
-			return {
-				ctor: '_Tuple2',
-				_0: _elm_lang$core$Native_Utils.update(
-					model,
-					{solutionPart2: solution}),
-				_1: _elm_lang$core$Platform_Cmd$none
-			};
-		}
-	});
 var _user$project$Main$main = _elm_lang$html$Html$program(
 	{init: _user$project$Main$init, view: _user$project$Main$view, update: _user$project$Main$update, subscriptions: _user$project$Main$subscriptions})();
 

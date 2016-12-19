@@ -5890,137 +5890,6 @@ var _elm_lang$core$Regex$AtMost = function (a) {
 };
 var _elm_lang$core$Regex$All = {ctor: 'All'};
 
-var _elm_lang$core$Set$foldr = F3(
-	function (f, b, _p0) {
-		var _p1 = _p0;
-		return A3(
-			_elm_lang$core$Dict$foldr,
-			F3(
-				function (k, _p2, b) {
-					return A2(f, k, b);
-				}),
-			b,
-			_p1._0);
-	});
-var _elm_lang$core$Set$foldl = F3(
-	function (f, b, _p3) {
-		var _p4 = _p3;
-		return A3(
-			_elm_lang$core$Dict$foldl,
-			F3(
-				function (k, _p5, b) {
-					return A2(f, k, b);
-				}),
-			b,
-			_p4._0);
-	});
-var _elm_lang$core$Set$toList = function (_p6) {
-	var _p7 = _p6;
-	return _elm_lang$core$Dict$keys(_p7._0);
-};
-var _elm_lang$core$Set$size = function (_p8) {
-	var _p9 = _p8;
-	return _elm_lang$core$Dict$size(_p9._0);
-};
-var _elm_lang$core$Set$member = F2(
-	function (k, _p10) {
-		var _p11 = _p10;
-		return A2(_elm_lang$core$Dict$member, k, _p11._0);
-	});
-var _elm_lang$core$Set$isEmpty = function (_p12) {
-	var _p13 = _p12;
-	return _elm_lang$core$Dict$isEmpty(_p13._0);
-};
-var _elm_lang$core$Set$Set_elm_builtin = function (a) {
-	return {ctor: 'Set_elm_builtin', _0: a};
-};
-var _elm_lang$core$Set$empty = _elm_lang$core$Set$Set_elm_builtin(_elm_lang$core$Dict$empty);
-var _elm_lang$core$Set$singleton = function (k) {
-	return _elm_lang$core$Set$Set_elm_builtin(
-		A2(
-			_elm_lang$core$Dict$singleton,
-			k,
-			{ctor: '_Tuple0'}));
-};
-var _elm_lang$core$Set$insert = F2(
-	function (k, _p14) {
-		var _p15 = _p14;
-		return _elm_lang$core$Set$Set_elm_builtin(
-			A3(
-				_elm_lang$core$Dict$insert,
-				k,
-				{ctor: '_Tuple0'},
-				_p15._0));
-	});
-var _elm_lang$core$Set$fromList = function (xs) {
-	return A3(_elm_lang$core$List$foldl, _elm_lang$core$Set$insert, _elm_lang$core$Set$empty, xs);
-};
-var _elm_lang$core$Set$map = F2(
-	function (f, s) {
-		return _elm_lang$core$Set$fromList(
-			A2(
-				_elm_lang$core$List$map,
-				f,
-				_elm_lang$core$Set$toList(s)));
-	});
-var _elm_lang$core$Set$remove = F2(
-	function (k, _p16) {
-		var _p17 = _p16;
-		return _elm_lang$core$Set$Set_elm_builtin(
-			A2(_elm_lang$core$Dict$remove, k, _p17._0));
-	});
-var _elm_lang$core$Set$union = F2(
-	function (_p19, _p18) {
-		var _p20 = _p19;
-		var _p21 = _p18;
-		return _elm_lang$core$Set$Set_elm_builtin(
-			A2(_elm_lang$core$Dict$union, _p20._0, _p21._0));
-	});
-var _elm_lang$core$Set$intersect = F2(
-	function (_p23, _p22) {
-		var _p24 = _p23;
-		var _p25 = _p22;
-		return _elm_lang$core$Set$Set_elm_builtin(
-			A2(_elm_lang$core$Dict$intersect, _p24._0, _p25._0));
-	});
-var _elm_lang$core$Set$diff = F2(
-	function (_p27, _p26) {
-		var _p28 = _p27;
-		var _p29 = _p26;
-		return _elm_lang$core$Set$Set_elm_builtin(
-			A2(_elm_lang$core$Dict$diff, _p28._0, _p29._0));
-	});
-var _elm_lang$core$Set$filter = F2(
-	function (p, _p30) {
-		var _p31 = _p30;
-		return _elm_lang$core$Set$Set_elm_builtin(
-			A2(
-				_elm_lang$core$Dict$filter,
-				F2(
-					function (k, _p32) {
-						return p(k);
-					}),
-				_p31._0));
-	});
-var _elm_lang$core$Set$partition = F2(
-	function (p, _p33) {
-		var _p34 = _p33;
-		var _p35 = A2(
-			_elm_lang$core$Dict$partition,
-			F2(
-				function (k, _p36) {
-					return p(k);
-				}),
-			_p34._0);
-		var p1 = _p35._0;
-		var p2 = _p35._1;
-		return {
-			ctor: '_Tuple2',
-			_0: _elm_lang$core$Set$Set_elm_builtin(p1),
-			_1: _elm_lang$core$Set$Set_elm_builtin(p2)
-		};
-	});
-
 var _elm_lang$virtual_dom$VirtualDom_Debug$wrap;
 var _elm_lang$virtual_dom$VirtualDom_Debug$wrapWithFlags;
 
@@ -8893,178 +8762,65 @@ var _user$project$View$renderProblem = F2(
 			});
 	});
 
-var _user$project$Main$intermediatePositions = F2(
-	function (_p1, _p0) {
-		var _p2 = _p1;
-		var _p7 = _p2._1;
-		var _p6 = _p2._0;
-		var _p3 = _p0;
-		var _p5 = _p3._1;
-		var _p4 = _p3._0;
-		return _elm_lang$core$Native_Utils.eq(_p6, _p4) ? ((_elm_lang$core$Native_Utils.cmp(_p7, _p5) < 1) ? A2(
-			_elm_lang$core$List$map,
-			F2(
-				function (x, y) {
-					return {ctor: '_Tuple2', _0: x, _1: y};
-				})(_p6),
-			A2(_elm_lang$core$List$range, _p7, _p5)) : _elm_lang$core$List$reverse(
-			A2(
-				_elm_lang$core$List$map,
-				F2(
-					function (x, y) {
-						return {ctor: '_Tuple2', _0: x, _1: y};
-					})(_p6),
-				A2(_elm_lang$core$List$range, _p5, _p7)))) : ((_elm_lang$core$Native_Utils.cmp(_p6, _p4) < 1) ? A2(
-			_elm_lang$core$List$map,
-			F2(
-				function (y, x) {
-					return {ctor: '_Tuple2', _0: x, _1: y};
-				})(_p7),
-			A2(_elm_lang$core$List$range, _p6, _p4)) : _elm_lang$core$List$reverse(
-			A2(
-				_elm_lang$core$List$map,
-				F2(
-					function (y, x) {
-						return {ctor: '_Tuple2', _0: x, _1: y};
-					})(_p7),
-				A2(_elm_lang$core$List$range, _p4, _p6))));
-	});
-var _user$project$Main$getMovements = function (model) {
-	return A2(
-		_elm_lang$core$List$map,
-		function (x) {
-			var _p8 = _elm_lang$core$List$head(x);
-			if (_p8.ctor === 'Just') {
-				var _p9 = _p8._0.submatches;
-				if (((_p9.ctor === '::') && (_p9._1.ctor === '::')) && (_p9._1._1.ctor === '[]')) {
-					return {
-						ctor: '_Tuple2',
-						_0: A2(_elm_lang$core$Maybe$withDefault, 'R', _p9._0),
-						_1: A2(
-							_elm_lang$core$Result$withDefault,
-							0,
-							_elm_lang$core$String$toInt(
-								A2(_elm_lang$core$Maybe$withDefault, '0', _p9._1._0)))
-					};
-				} else {
-					return _elm_lang$core$Native_Utils.crashCase(
-						'Main',
-						{
-							start: {line: 119, column: 25},
-							end: {line: 129, column: 67}
-						},
-						_p9)('Input is not correct');
-				}
-			} else {
-				return _elm_lang$core$Native_Utils.crashCase(
-					'Main',
-					{
-						start: {line: 117, column: 17},
-						end: {line: 132, column: 59}
-					},
-					_p8)('Input is not correct');
-			}
-		},
-		A2(
-			_elm_lang$core$List$map,
-			function (x) {
-				return A3(
-					_elm_lang$core$Regex$find,
-					_elm_lang$core$Regex$AtMost(2),
-					_elm_lang$core$Regex$regex('([RL])(\\d+)'),
-					x);
-			},
-			A2(
-				_elm_lang$core$List$map,
-				_elm_lang$core$String$trim,
-				A2(_elm_lang$core$String$split, ',', model.input))));
+var _user$project$Main$emptyPayload = function (robot) {
+	return _elm_lang$core$Native_Utils.update(
+		robot,
+		{
+			payload: {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: _elm_lang$core$Maybe$Nothing}
+		});
 };
-var _user$project$Main$blockDistance = function (_p12) {
-	var _p13 = _p12;
-	return _p13._0 + _p13._1;
-};
-var _user$project$Main$advance = F2(
-	function (distance, model) {
-		var _p14 = model.position;
-		var posX = _p14._0;
-		var posY = _p14._1;
-		var _p15 = model.direction;
-		var dirX = _p15._0;
-		var dirY = _p15._1;
-		return _elm_lang$core$Native_Utils.update(
+var _user$project$Main$updateFoundBot = F2(
+	function (foundBot, model) {
+		return (_elm_lang$core$Native_Utils.cmp(foundBot, 0) > -1) ? _elm_lang$core$Native_Utils.update(
 			model,
-			{
-				position: {ctor: '_Tuple2', _0: (distance * dirX) + posX, _1: (distance * dirY) + posY}
-			});
+			{foundBot: foundBot}) : model;
 	});
-var _user$project$Main$turn = F2(
-	function (direction, model) {
-		var _p16 = model.direction;
-		var dirX = _p16._0;
-		var dirY = _p16._1;
-		var _p17 = direction;
-		switch (_p17) {
-			case 'R':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						direction: {ctor: '_Tuple2', _0: dirY, _1: 0 - dirX}
-					});
-			case 'L':
-				return _elm_lang$core$Native_Utils.update(
-					model,
-					{
-						direction: {ctor: '_Tuple2', _0: 0 - dirY, _1: dirX}
-					});
-			default:
-				return _elm_lang$core$Native_Utils.crashCase(
-					'Main',
-					{
-						start: {line: 76, column: 9},
-						end: {line: 84, column: 48}
-					},
-					_p17)('Unknown direction');
+var _user$project$Main$updateBotOrders = F3(
+	function (botNumber, maybeRobot, _p0) {
+		var _p1 = _p0;
+		var ordersHigh = {ctor: '_Tuple2', _0: _p1._3, _1: _p1._4};
+		var ordersLow = {ctor: '_Tuple2', _0: _p1._1, _1: _p1._2};
+		var _p2 = maybeRobot;
+		if (_p2.ctor === 'Nothing') {
+			return {
+				number: botNumber,
+				payload: {ctor: '_Tuple2', _0: _elm_lang$core$Maybe$Nothing, _1: _elm_lang$core$Maybe$Nothing},
+				ordersLow: ordersLow,
+				ordersHigh: ordersHigh
+			};
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				_p2._0,
+				{ordersLow: ordersLow, ordersHigh: ordersHigh});
 		}
 	});
-var _user$project$Main$solverPart1 = function (model) {
-	return _user$project$Main$blockDistance(
-		function (_) {
-			return _.position;
-		}(
-			A3(
-				_elm_lang$core$List$foldl,
-				F2(
-					function (_p19, m) {
-						var _p20 = _p19;
-						return A2(
-							_user$project$Main$advance,
-							_p20._1,
-							A2(_user$project$Main$turn, _p20._0, m));
-					}),
-				model,
-				_user$project$Main$getMovements(model))));
-};
+var _user$project$Main$problemDay = 10;
 var _user$project$Main$init = {
 	ctor: '_Tuple2',
 	_0: {
-		problemDay: 1,
+		problemDay: _user$project$Main$problemDay,
 		input: A2(
 			_elm_lang$core$Maybe$withDefault,
 			'',
-			A2(_elm_lang$core$Array$get, 0, _user$project$Inputs$problemInputs)),
+			A2(_elm_lang$core$Array$get, _user$project$Main$problemDay - 1, _user$project$Inputs$problemInputs)),
 		solutionPart1: '',
 		solutionPart2: '',
-		direction: {ctor: '_Tuple2', _0: 0, _1: 1},
-		position: {ctor: '_Tuple2', _0: 0, _1: 0}
+		bots: _elm_lang$core$Dict$empty,
+		output: _elm_lang$core$Dict$empty,
+		foundBot: 0
 	},
 	_1: _elm_lang$core$Platform_Cmd$none
 };
 var _user$project$Main$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
-var _user$project$Main$Model = F6(
-	function (a, b, c, d, e, f) {
-		return {problemDay: a, input: b, solutionPart1: c, solutionPart2: d, direction: e, position: f};
+var _user$project$Main$Model = F7(
+	function (a, b, c, d, e, f, g) {
+		return {problemDay: a, input: b, solutionPart1: c, solutionPart2: d, bots: e, output: f, foundBot: g};
+	});
+var _user$project$Main$Robot = F4(
+	function (a, b, c, d) {
+		return {number: a, payload: b, ordersHigh: c, ordersLow: d};
 	});
 var _user$project$Main$Solve2 = {ctor: 'Solve2'};
 var _user$project$Main$Solve = {ctor: 'Solve'};
@@ -9081,103 +8837,387 @@ var _user$project$Main$view = function (model) {
 			_1: {ctor: '[]'}
 		});
 };
-var _user$project$Main$Visited = function (a) {
-	return {ctor: 'Visited', _0: a};
+var _user$project$Main$Output = {ctor: 'Output'};
+var _user$project$Main$Bot = {ctor: 'Bot'};
+var _user$project$Main$toOutput = function (output) {
+	return _elm_lang$core$Native_Utils.eq(output, 'bot') ? _user$project$Main$Bot : _user$project$Main$Output;
 };
-var _user$project$Main$NotVisited = function (a) {
-	return {ctor: 'NotVisited', _0: a};
-};
-var _user$project$Main$checkVisited = F2(
-	function (newPositions, positions) {
-		checkVisited:
-		while (true) {
-			var _p21 = newPositions;
-			if (_p21.ctor === '[]') {
-				return _user$project$Main$NotVisited(positions);
-			} else {
-				var _p23 = _p21._0;
-				var _p22 = A2(_elm_lang$core$Set$member, _p23, positions);
-				if (_p22 === true) {
-					return _user$project$Main$Visited(_p23);
-				} else {
-					var _v9 = _p21._1,
-						_v10 = A2(_elm_lang$core$Set$insert, _p23, positions);
-					newPositions = _v9;
-					positions = _v10;
-					continue checkVisited;
+var _user$project$Main$updateBotPayload = F3(
+	function (botNumber, maybeRobot, value) {
+		var _p3 = maybeRobot;
+		if (_p3.ctor === 'Nothing') {
+			return {
+				ctor: '_Tuple2',
+				_0: -1,
+				_1: {
+					number: botNumber,
+					payload: {
+						ctor: '_Tuple2',
+						_0: _elm_lang$core$Maybe$Just(value),
+						_1: _elm_lang$core$Maybe$Nothing
+					},
+					ordersLow: {ctor: '_Tuple2', _0: _user$project$Main$Bot, _1: 0},
+					ordersHigh: {ctor: '_Tuple2', _0: _user$project$Main$Bot, _1: 0}
 				}
-			}
+			};
+		} else {
+			var _p7 = _p3._0;
+			var _p4 = _p7.payload;
+			_v3_2:
+			do {
+				if (_p4.ctor === '_Tuple2') {
+					if (_p4._0.ctor === 'Nothing') {
+						if (_p4._1.ctor === 'Nothing') {
+							return {
+								ctor: '_Tuple2',
+								_0: -1,
+								_1: _elm_lang$core$Native_Utils.update(
+									_p7,
+									{
+										payload: {
+											ctor: '_Tuple2',
+											_0: _elm_lang$core$Maybe$Just(value),
+											_1: _elm_lang$core$Maybe$Nothing
+										}
+									})
+							};
+						} else {
+							break _v3_2;
+						}
+					} else {
+						if (_p4._1.ctor === 'Nothing') {
+							var _p5 = _p4._0._0;
+							var foundBot = (_elm_lang$core$Native_Utils.eq(_p5, 61) && _elm_lang$core$Native_Utils.eq(value, 17)) ? _p7.number : -1;
+							return (_elm_lang$core$Native_Utils.cmp(_p5, value) > 0) ? {
+								ctor: '_Tuple2',
+								_0: foundBot,
+								_1: _elm_lang$core$Native_Utils.update(
+									_p7,
+									{
+										payload: {
+											ctor: '_Tuple2',
+											_0: _elm_lang$core$Maybe$Just(_p5),
+											_1: _elm_lang$core$Maybe$Just(value)
+										}
+									})
+							} : {
+								ctor: '_Tuple2',
+								_0: foundBot,
+								_1: _elm_lang$core$Native_Utils.update(
+									_p7,
+									{
+										payload: {
+											ctor: '_Tuple2',
+											_0: _elm_lang$core$Maybe$Just(value),
+											_1: _elm_lang$core$Maybe$Just(_p5)
+										}
+									})
+							};
+						} else {
+							break _v3_2;
+						}
+					}
+				} else {
+					break _v3_2;
+				}
+			} while(false);
+			return _elm_lang$core$Native_Utils.crashCase(
+				'Main',
+				{
+					start: {line: 178, column: 13},
+					end: {line: 196, column: 52}
+				},
+				_p4)('Overloading bot!!');
 		}
 	});
-var _user$project$Main$findDuplicatePosition_ = F3(
-	function (model, movements, positions) {
-		findDuplicatePosition_:
-		while (true) {
-			var _p24 = movements;
-			if (_p24.ctor === '[]') {
+var _user$project$Main$executeInstruction = F2(
+	function (model, instruction) {
+		var _p8 = instruction;
+		if (_p8.ctor === 'Value') {
+			var _p10 = _p8._0._1;
+			var existingBot = A2(_elm_lang$core$Dict$get, _p10, model.bots);
+			var _p9 = A3(_user$project$Main$updateBotPayload, _p10, existingBot, _p8._0._0);
+			var foundBot = _p9._0;
+			var updatedBot = _p9._1;
+			return A2(
+				_user$project$Main$updateFoundBot,
+				foundBot,
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{
+						bots: A3(_elm_lang$core$Dict$insert, _p10, updatedBot, model.bots)
+					}));
+		} else {
+			var _p12 = _p8._0;
+			var _p11 = _p12;
+			var bot = _p11._0;
+			var existingBot = A2(_elm_lang$core$Dict$get, bot, model.bots);
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{
+					bots: A3(
+						_elm_lang$core$Dict$insert,
+						bot,
+						A3(_user$project$Main$updateBotOrders, bot, existingBot, _p12),
+						model.bots)
+				});
+		}
+	});
+var _user$project$Main$executeHightOrder = F2(
+	function (robot, model) {
+		var _p13 = robot.payload;
+		var high = _p13._0;
+		var hValue = A2(_elm_lang$core$Maybe$withDefault, 0, high);
+		var _p14 = robot.ordersHigh;
+		if (_p14._0.ctor === 'Bot') {
+			var _p16 = _p14._1;
+			var existingBot = A2(_elm_lang$core$Dict$get, _p16, model.bots);
+			var _p15 = A3(_user$project$Main$updateBotPayload, _p16, existingBot, hValue);
+			var foundBot = _p15._0;
+			var updatedBot = _p15._1;
+			return A2(
+				_user$project$Main$updateFoundBot,
+				foundBot,
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{
+						bots: A3(_elm_lang$core$Dict$insert, _p16, updatedBot, model.bots)
+					}));
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{
+					output: A3(_elm_lang$core$Dict$insert, _p14._1, hValue, model.output)
+				});
+		}
+	});
+var _user$project$Main$executeLowOrder = F2(
+	function (robot, model) {
+		var _p17 = robot.payload;
+		var low = _p17._1;
+		var lValue = A2(_elm_lang$core$Maybe$withDefault, 0, low);
+		var _p18 = robot.ordersLow;
+		if (_p18._0.ctor === 'Bot') {
+			var _p20 = _p18._1;
+			var existingBot = A2(_elm_lang$core$Dict$get, _p20, model.bots);
+			var _p19 = A3(_user$project$Main$updateBotPayload, _p20, existingBot, lValue);
+			var foundBot = _p19._0;
+			var updatedBot = _p19._1;
+			return A2(
+				_user$project$Main$updateFoundBot,
+				foundBot,
+				_elm_lang$core$Native_Utils.update(
+					model,
+					{
+						bots: A3(_elm_lang$core$Dict$insert, _p20, updatedBot, model.bots)
+					}));
+		} else {
+			return _elm_lang$core$Native_Utils.update(
+				model,
+				{
+					output: A3(_elm_lang$core$Dict$insert, _p18._1, lValue, model.output)
+				});
+		}
+	});
+var _user$project$Main$runRobot = F3(
+	function (robotNumber, robot, model) {
+		var executedInstructions = A2(
+			_user$project$Main$executeHightOrder,
+			robot,
+			A2(_user$project$Main$executeLowOrder, robot, model));
+		return _elm_lang$core$Native_Utils.update(
+			executedInstructions,
+			{
+				bots: A3(
+					_elm_lang$core$Dict$insert,
+					robotNumber,
+					_user$project$Main$emptyPayload(robot),
+					executedInstructions.bots)
+			});
+	});
+var _user$project$Main$runSimulation = function (model) {
+	runSimulation:
+	while (true) {
+		var nextRobot = _elm_lang$core$List$head(
+			A2(
+				_elm_lang$core$List$filter,
+				function (_p21) {
+					var _p22 = _p21;
+					var _p23 = _p22._1.payload;
+					if (((_p23.ctor === '_Tuple2') && (_p23._0.ctor === 'Just')) && (_p23._1.ctor === 'Just')) {
+						return true;
+					} else {
+						return false;
+					}
+				},
+				_elm_lang$core$Dict$toList(model.bots)));
+		var _p24 = nextRobot;
+		if (_p24.ctor === 'Nothing') {
+			return model;
+		} else {
+			var _v10 = A3(_user$project$Main$runRobot, _p24._0._0, _p24._0._1, model);
+			model = _v10;
+			continue runSimulation;
+		}
+	}
+};
+var _user$project$Main$Movement = function (a) {
+	return {ctor: 'Movement', _0: a};
+};
+var _user$project$Main$parseMovement = function (string) {
+	var match = A3(
+		_elm_lang$core$Regex$find,
+		_elm_lang$core$Regex$AtMost(1),
+		_elm_lang$core$Regex$regex('bot (\\d+) gives low to (bot|output) (\\d+) and high to (bot|output) (\\d+)'),
+		string);
+	var _p25 = match;
+	if ((_p25.ctor === '::') && (_p25._1.ctor === '[]')) {
+		return function (l) {
+			var _p26 = l;
+			if ((((((_p26.ctor === '::') && (_p26._1.ctor === '::')) && (_p26._1._1.ctor === '::')) && (_p26._1._1._1.ctor === '::')) && (_p26._1._1._1._1.ctor === '::')) && (_p26._1._1._1._1._1.ctor === '[]')) {
+				var highToNumber = A2(
+					_elm_lang$core$Result$withDefault,
+					0,
+					_elm_lang$core$String$toInt(_p26._1._1._1._1._0));
+				var highToType = _user$project$Main$toOutput(_p26._1._1._1._0);
+				var lowToNumber = A2(
+					_elm_lang$core$Result$withDefault,
+					0,
+					_elm_lang$core$String$toInt(_p26._1._1._0));
+				var lowToType = _user$project$Main$toOutput(_p26._1._0);
+				var botNumber = A2(
+					_elm_lang$core$Result$withDefault,
+					0,
+					_elm_lang$core$String$toInt(_p26._0));
+				return _user$project$Main$Movement(
+					{ctor: '_Tuple5', _0: botNumber, _1: lowToType, _2: lowToNumber, _3: highToType, _4: highToNumber});
+			} else {
 				return _elm_lang$core$Native_Utils.crashCase(
 					'Main',
 					{
-						start: {line: 196, column: 5},
-						end: {line: 221, column: 72}
+						start: {line: 132, column: 29},
+						end: {line: 153, column: 80}
 					},
-					_p24)('No solution, no duplicate movements');
-			} else {
-				var _p26 = _p24._0;
-				var direction = _p26._0;
-				var distance = _p26._1;
-				var updatedModel = A2(
-					_user$project$Main$advance,
-					distance,
-					A2(_user$project$Main$turn, direction, model));
-				var intermediates = _elm_lang$core$List$tail(
-					_elm_lang$core$List$reverse(
-						A2(_user$project$Main$intermediatePositions, model.position, updatedModel.position)));
-				var _p27 = intermediates;
-				if (_p27.ctor === 'Nothing') {
-					return _elm_lang$core$Native_Utils.crashCase(
-						'Main',
-						{
-							start: {line: 211, column: 17},
-							end: {line: 221, column: 72}
-						},
-						_p27)('No intermediate positions!!!');
-				} else {
-					var _p29 = A2(
-						_user$project$Main$checkVisited,
-						_elm_lang$core$List$reverse(_p27._0),
-						positions);
-					if (_p29.ctor === 'Visited') {
-						return _p29._0;
-					} else {
-						var _v14 = updatedModel,
-							_v15 = _p24._1,
-							_v16 = _p29._0;
-						model = _v14;
-						movements = _v15;
-						positions = _v16;
-						continue findDuplicatePosition_;
-					}
-				}
+					_p26)(
+					A2(
+						_elm_lang$core$Basics_ops['++'],
+						'Invalid input',
+						_elm_lang$core$Basics$toString(l)));
 			}
-		}
-	});
+		}(
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Maybe$withDefault(''),
+				_p25._0.submatches));
+	} else {
+		return _elm_lang$core$Native_Utils.crashCase(
+			'Main',
+			{
+				start: {line: 127, column: 9},
+				end: {line: 157, column: 56}
+			},
+			_p25)(
+			A2(_elm_lang$core$Basics_ops['++'], 'Invalid input', string));
+	}
+};
+var _user$project$Main$Value = function (a) {
+	return {ctor: 'Value', _0: a};
+};
+var _user$project$Main$parseValue = function (string) {
+	var match = A3(
+		_elm_lang$core$Regex$find,
+		_elm_lang$core$Regex$AtMost(1),
+		_elm_lang$core$Regex$regex('value (\\d+) goes to bot (\\d+)'),
+		string);
+	var _p29 = match;
+	if ((_p29.ctor === '::') && (_p29._1.ctor === '[]')) {
+		return function (l) {
+			var _p30 = l;
+			if (((_p30.ctor === '::') && (_p30._1.ctor === '::')) && (_p30._1._1.ctor === '[]')) {
+				return _user$project$Main$Value(
+					{ctor: '_Tuple2', _0: _p30._0, _1: _p30._1._0});
+			} else {
+				return _elm_lang$core$Native_Utils.crashCase(
+					'Main',
+					{
+						start: {line: 109, column: 29},
+						end: {line: 114, column: 64}
+					},
+					_p30)('Invalid input');
+			}
+		}(
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$Result$withDefault(0),
+				A2(
+					_elm_lang$core$List$map,
+					_elm_lang$core$String$toInt,
+					A2(
+						_elm_lang$core$List$map,
+						_elm_lang$core$Maybe$withDefault(''),
+						_p29._0.submatches))));
+	} else {
+		return _elm_lang$core$Native_Utils.crashCase(
+			'Main',
+			{
+				start: {line: 102, column: 9},
+				end: {line: 118, column: 44}
+			},
+			_p29)('Invalid input');
+	}
+};
+var _user$project$Main$parseInput = function (string) {
+	return A2(_elm_lang$core$String$contains, 'value', string) ? _user$project$Main$parseValue(string) : _user$project$Main$parseMovement(string);
+};
+var _user$project$Main$solverPart1 = function (model) {
+	var settedUpRobots = A3(
+		_elm_lang$core$List$foldl,
+		F2(
+			function (i, m) {
+				return A2(_user$project$Main$executeInstruction, m, i);
+			}),
+		model,
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$Main$parseInput,
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$String$trim,
+				A2(_elm_lang$core$String$split, '\n', model.input))));
+	return _elm_lang$core$Basics$toString(
+		_user$project$Main$runSimulation(settedUpRobots).foundBot);
+};
 var _user$project$Main$solverPart2 = function (model) {
-	var moves = _user$project$Main$getMovements(model);
-	return _user$project$Main$blockDistance(
-		A3(
-			_user$project$Main$findDuplicatePosition_,
-			model,
-			moves,
-			_elm_lang$core$Set$fromList(
-				{ctor: '[]'})));
+	var settedUpRobots = A3(
+		_elm_lang$core$List$foldl,
+		F2(
+			function (i, m) {
+				return A2(_user$project$Main$executeInstruction, m, i);
+			}),
+		model,
+		A2(
+			_elm_lang$core$List$map,
+			_user$project$Main$parseInput,
+			A2(
+				_elm_lang$core$List$map,
+				_elm_lang$core$String$trim,
+				A2(_elm_lang$core$String$split, '\n', model.input))));
+	return _elm_lang$core$Basics$toString(
+		_elm_lang$core$List$product(
+			_elm_lang$core$Dict$values(
+				A2(
+					_elm_lang$core$Dict$filter,
+					F2(
+						function (k, _p33) {
+							return _elm_lang$core$Native_Utils.eq(k, 0) || (_elm_lang$core$Native_Utils.eq(k, 1) || _elm_lang$core$Native_Utils.eq(k, 2));
+						}),
+					_user$project$Main$runSimulation(settedUpRobots).output))));
 };
 var _user$project$Main$update = F2(
 	function (msg, model) {
-		var _p30 = msg;
-		if (_p30.ctor === 'Solve') {
-			var solution = _elm_lang$core$Basics$toString(
-				_user$project$Main$solverPart1(model));
+		var _p34 = msg;
+		if (_p34.ctor === 'Solve') {
+			var solution = _user$project$Main$solverPart1(model);
 			return {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
@@ -9186,8 +9226,7 @@ var _user$project$Main$update = F2(
 				_1: _elm_lang$core$Platform_Cmd$none
 			};
 		} else {
-			var solution = _elm_lang$core$Basics$toString(
-				_user$project$Main$solverPart2(model));
+			var solution = _user$project$Main$solverPart2(model);
 			return {
 				ctor: '_Tuple2',
 				_0: _elm_lang$core$Native_Utils.update(
